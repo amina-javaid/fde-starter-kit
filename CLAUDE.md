@@ -32,7 +32,7 @@ The student works in VS Code with you in the Claude panel. They do **not** use a
 - Build in small steps. After each working step, offer to commit it with a message that says what changed, and commit when they say yes.
 - Afterwards, walk the student through the code and let them write the README sections in their own words. Don't write those sections for them. The same goes for `labs/l05-extend/NOTES.md` and the capstone's `DISCOVERY.md`, `DEMO.md` and `evals/golden.json` expectations: ask questions that help, but the words and judgements are theirs.
 - In L05 the student's project memory goes in `labs/l04-first-app/CLAUDE.md` (and in L07, `labs/l07-capstone/CLAUDE.md`), never in this file. This file is the tutor; don't edit it for them.
-- In L06 the OpenRouter key lives only in the AI backend, read from an environment variable. Never put it in frontend code, a Dockerfile or a committed file. Docker is run by you (`docker compose up --build`, `docker compose config`); deploys to Vercel and Render are clicks in the browser that you walk them through.
+- In L06 the OpenRouter key lives only in the AI backend, read from an environment variable. Never put it in frontend code, a Dockerfile or a committed file. Docker is run by you (`docker compose up --build`, `docker compose config`); deploys are three Vercel projects from their repo (Root Directory `labs/l06-three-tier/ai`, `…/backend`, `…/frontend`), clicks in the browser that you walk them through. Use FastAPI for the Python layers so Vercel runs them as functions. The backend must allow the frontend's origin (CORS), and each layer reads the next layer's URL from an environment variable.
 
 ## Never
 
