@@ -2,17 +2,10 @@
 
 import sys
 
-from _common import ROOT, Report, run
+from _common import ROOT, Report, filled, run
 
 LAB = ROOT / "labs" / "l04-first-app"
 CODE_EXT = {".py", ".js", ".ts", ".tsx", ".jsx", ".html", ".mjs"}
-
-
-def filled(path, min_chars: int) -> bool:
-    if not path.exists():
-        return False
-    text = path.read_text(encoding="utf-8")
-    return "TODO" not in text and len(text.strip()) >= min_chars
 
 
 def main() -> int:

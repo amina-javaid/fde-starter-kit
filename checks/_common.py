@@ -97,3 +97,87 @@ class Report:
         print(f"    {code}\n")
         print(f"Paste it into the Check tab at {SITE_URL}/level/{level}/#check")
         return 0
+
+
+# ---- Helpers shared by the L04–L07 checks ----
+
+SHIPPED_SKILLS = {"start", "check", "preflight", "explain"}
+
+
+def filled(path: Path, min_chars: int) -> bool:
+    """True when a template file exists, has no TODO left and has some substance."""
+    if not path.exists():
+        return False
+    text = path.read_text(encoding="utf-8", errors="replace")
+    return "TODO" not in text and len(text.strip()) >= min_chars
+
+
+def frontmatter(path: Path) -> dict:
+    """Read the simple `key: value` frontmatter at the top of a skill or agent file."""
+    try:
+        lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
+    except OSError:
+        return {}
+    if not lines or lines[0].strip() != "---":
+        return {}
+    meta = {}
+    for line in lines[1:]:
+        if line.strip() == "---":
+            return meta
+        if ":" in line and not line.startswith((" ", "\t")):
+            key, val = line.split(":", 1)
+            meta[key.strip()] = val.strip().strip('"').strip("'")
+    return {}  # never closed
+
+
+def student_skills() -> list:
+    """Skills the student added (not the four the kit ships), with name + description."""
+    found = []
+    for p in sorted((ROOT / ".claude" / "skills").glob("*/SKILL.md")):
+        if p.parent.name in SHIPPED_SKILLS:
+            continue
+        meta = frontmatter(p)
+        if meta.get("name") and meta.get("description"):
+            found.append(p.parent.name)
+    return found
+
+
+def student_agents() -> list:
+    """Subagents in .claude/agents/ with name + description."""
+    found = []
+    for p in sorted((ROOT / ".claude" / "agents").glob("*.md")):
+        meta = frontmatter(p)
+        if meta.get("name") and meta.get("description"):
+            found.append(p.stem)
+    return found
+
+
+def commits_on(rel_path: str) -> int:
+    """Commits after the template's initial commit that touched rel_path."""
+    ok, out = run(["git", "rev-list", "--count", "--min-parents=1", "HEAD", "--", rel_path])
+    return int(out) if ok and out.isdigit() else 0
+
+
+def code_files(folder: Path, exts=frozenset({".py", ".js", ".ts", ".tsx", ".jsx", ".html", ".mjs"})) -> list:
+    if not folder.exists():
+        return []
+    skip = {"node_modules", ".venv", "venv", "dist", "build", "__pycache__"}
+    return [p for p in folder.rglob("*") if p.suffix in exts and not skip.intersection(p.parts)]
+
+
+def section(path: Path, heading: str) -> str:
+    """The text under a `## heading` in a Markdown file, up to the next `## `."""
+    if not path.exists():
+        return ""
+    text = path.read_text(encoding="utf-8", errors="replace")
+    start = text.find(f"## {heading}")
+    if start < 0:
+        return ""
+    body = text[start + len(heading) + 3:]
+    end = body.find("\n## ")
+    return (body if end < 0 else body[:end]).strip()
+
+
+def sections_written(path: Path, headings: list, min_chars: int = 120) -> list:
+    """Headings whose section is missing, still has a TODO, or is shorter than min_chars."""
+    return [h for h in headings if (s := section(path, h)) == "" or "TODO" in s or len(s) < min_chars]

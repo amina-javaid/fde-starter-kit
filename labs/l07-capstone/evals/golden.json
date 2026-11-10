@@ -1,0 +1,14 @@
+{
+  "about": "Your golden set: at least 5 tickets from data/tickets.json, each with the answer a team lead would give. Run your app against these and record the result. Replace the example below with your own cases.",
+  "cases": [],
+  "example": {
+    "ticket_id": "T-001",
+    "input": "Bowl arrived in pieces (TW-10421), photo attached",
+    "expected": {
+      "category": "damaged",
+      "resolution": "Refund item value, $64.00",
+      "needs_approval": false
+    },
+    "result": "pass, or what the app got wrong"
+  }
+}

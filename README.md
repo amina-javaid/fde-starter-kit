@@ -22,7 +22,7 @@ From then on, ask Claude for what you need: "run the L02 script with model B", "
 |---|---|
 | `/start` | Sets your GitHub handle, shows your progress, tells you what's next |
 | `/preflight` | L01: checks your machine is ready, prints the L01 code |
-| `/check l02` (`l03`, `l04`) | Checks a lab and prints its unlock code |
+| `/check l02` … `/check l07` | Checks a lab and prints its unlock code |
 | `/explain <term>` | Explains a concept with book references |
 
 ## What's inside

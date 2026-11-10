@@ -27,10 +27,12 @@ The student works in VS Code with you in the Claude panel. They do **not** use a
 - You *may* fix anything that isn't a TODO: `.env` setup, paths, typos the student points to, Python version issues.
 - You **do** run the lab script when they ask ("run the L02 script with model B", "run my agent with this question"). Running it is not writing it.
 
-**L04 onward are "direct Claude Code" labs.** Here you do write the code. Coach the workflow:
+**L04 to L07 are "direct Claude Code" labs.** Here you do write the code, and the CLAUDE.md files, skills, subagents, Dockerfiles and deploy settings. Coach the workflow:
 - Insist on a filled-in `SPEC.md` before building, and suggest plan mode for the first build.
 - Build in small steps. After each working step, offer to commit it with a message that says what changed, and commit when they say yes.
-- Afterwards, walk the student through the code and let them write the README sections in their own words. Don't write those sections for them.
+- Afterwards, walk the student through the code and let them write the README sections in their own words. Don't write those sections for them. The same goes for `labs/l05-extend/NOTES.md` and the capstone's `DISCOVERY.md`, `DEMO.md` and `evals/golden.json` expectations: ask questions that help, but the words and judgements are theirs.
+- In L05 the student's project memory goes in `labs/l04-first-app/CLAUDE.md` (and in L07, `labs/l07-capstone/CLAUDE.md`), never in this file. This file is the tutor; don't edit it for them.
+- In L06 the OpenRouter key lives only in the AI backend, read from an environment variable. Never put it in frontend code, a Dockerfile or a committed file. Docker is run by you (`docker compose up --build`, `docker compose config`); deploys to Vercel and Render are clicks in the browser that you walk them through.
 
 ## Never
 
@@ -41,11 +43,12 @@ The student works in VS Code with you in the Claude panel. They do **not** use a
 ## Commands you run (never the student)
 
 - Python is `python` on Windows and `python3` on macOS/Linux. If one isn't found (or opens the Microsoft Store), try the other.
-- Checks: `python checks/preflight.py`, `python checks/l02.py`, `python checks/l03.py`, `python checks/l04.py`. Profile: `python checks/profile.py show | set <handle>`.
+- Checks: `python checks/preflight.py`, `python checks/l02.py` … `python checks/l07.py`. Profile: `python checks/profile.py show | set <handle>`.
 - Labs: `python labs/l02-hello-llm/hello_llm.py [--model A|B] [-q "question"]`; `python labs/l03-agent-by-hand/agent.py "<question>"`.
 - `.env`: create it by copying `.env.example` (you may write the file; you may not read `.env` afterwards).
 - Git: `git add`, `git commit -m "…"`, `git push`, `git status`, `git log`, and `git config user.name` / `user.email` with the values the student gives you. If `git push` fails on sign-in, ask the student to click **Sync Changes** in VS Code's Source Control view, which signs them in to GitHub in the browser.
-- Everything is standard-library Python; nothing needs `pip install` until L04.
+- Everything is standard-library Python; nothing needs `pip install` until L04. Docker Desktop is needed from L06.
+- MCP servers go in `.mcp.json` at the repo root (L05). Skills the student adds go in `.claude/skills/<name>/SKILL.md`, subagents in `.claude/agents/<name>.md`.
 - Student state lives in `.fde/` (git-ignored): `profile.json` (GitHub handle), `progress.json` (passed levels and codes), `l02_runs.json`, `traces/l03.jsonl`.
 
 ## Where things are
@@ -56,6 +59,8 @@ The student works in VS Code with you in the Claude panel. They do **not** use a
 | L02 How LLMs work | `labs/l02-hello-llm/` | `/check l02` | §3.1 |
 | L03 LLM → Agent (CTL) | `labs/l03-agent-by-hand/` | `/check l03` | §3.1–3.2 |
 | L04 Harness & Claude Code | `labs/l04-first-app/` | `/check l04` | §3.3–3.4, §3.11, Ch 2 |
-| L05–L07 | coming soon | n/a | Ch 2, 4, 5, 6 |
+| L05 Extending the harness | `labs/l05-extend/` (+ the L04 app's CLAUDE.md, `.claude/`, `.mcp.json`) | `/check l05` | Ch 2, 4, 5, 6, §3.12 |
+| L06 Full-stack architecture | `labs/l06-three-tier/` | `/check l06` | §3.5–3.10 |
+| L07 Capstone (Tidewell Parcel Co.) | `labs/l07-capstone/` | `/check l07` | all of the above |
 
 `glossary.md` has every term on the path with its level and book section. Use it for `/explain`.

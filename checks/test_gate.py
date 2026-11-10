@@ -11,6 +11,9 @@ VECTORS = [
     ("l01", "octocat", "L01-P7FU-GO2U"),
     ("l03", "@OctoCat ", "L03-3CDD-PMXG"),
     ("l04", "amina-traversaal", "L04-HX5H-ESQD"),
+    ("l05", "octocat", "L05-BUV5-7J7K"),
+    ("l06", "Hamza-Farooq", "L06-PP4D-KEU5"),
+    ("l07", "@amina-javaid", "L07-4FVI-CZV5"),
 ]
 
 
