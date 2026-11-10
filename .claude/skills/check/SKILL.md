@@ -15,7 +15,8 @@ The level is: `$ARGUMENTS`
 3. **If it passes:** show the unlock code exactly as printed and say where to paste it. Add one sentence on what they just proved (e.g. for l03: "you wrote the loop Claude Code runs on").
 
 4. **If it fails:** take the first `[FAIL]` and help with *that*:
-   - For **l02 / l03**, the failures point at the student's TODOs. Follow the tutoring rule in CLAUDE.md: hints in escalating steps, never the code for the TODO itself. Open the relevant part of the file and ask them what they think should go there.
-   - For **l04**, help directly: finishing the spec, committing, or getting the app to run. Leave the README's "How to run" / "How it works" sections for the student to write in their own words.
+   - If the fix is "run the lab" (no runs yet, or only one model used), offer to run it for them and do it when they say yes. Running the script is fine; writing the TODOs is not.
+   - For **l02 / l03**, the other failures point at the student's TODOs. Follow the tutoring rule in CLAUDE.md: hints in escalating steps, never the code for the TODO itself. Open the relevant part of the file and ask them what they think should go there.
+   - For **l04**, help directly: finishing the spec, committing their work (offer, then do it), or getting the app to run. Leave the README's "How to run" / "How it works" sections for the student to write in their own words.
 
 5. Never edit files under `checks/`, and never produce a code any other way than by running the check.

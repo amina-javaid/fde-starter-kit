@@ -10,12 +10,10 @@ The full walkthrough is in the **Lab** tab of L03 on the pre-work site, and the 
 | 2 | Act + Observe | Run the tool, append the result as a `tool` message |
 | 3 | **L**oop | Call the model until it answers without asking for a tool |
 
-```bash
-python labs/l03-agent-by-hand/agent.py "Where is order 4721 and can I still change the address?"
-```
+When your TODOs are in, ask Claude: *"Run my L03 agent with the question 'Where is order 4721 and can I still change the address?'"* Claude runs it for you; it won't write the TODOs.
 
 Every step is written to `.fde/traces/l03.jsonl`. Open it and read it: that's what debugging an agent looks like.
 
 Stretch: ask about order 9999. Then add an `update_address` tool that asks the user to confirm before running it.
 
-When it works: `/check l03`.
+When it works, type `/check l03`.

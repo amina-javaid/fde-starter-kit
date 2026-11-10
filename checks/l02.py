@@ -15,7 +15,7 @@ def main() -> int:
     good = [x for x in runs if x.get("reply") and x.get("output_tokens", 0) > 0 and x.get("input_tokens", 0) > 0]
 
     if not runs:
-        r.fail("No runs recorded yet", "Finish the TODOs and run: python labs/l02-hello-llm/hello_llm.py")
+        r.fail("No runs recorded yet", "Finish the TODOs, then ask Claude to run the L02 script")
         return r.finish("l02")
 
     r.ok(f"{len(good)} successful call(s) recorded, with token usage")
@@ -23,7 +23,7 @@ def main() -> int:
     if len(models) >= 2:
         r.ok(f"Two different models: {models[0]} and {models[1]}")
     elif models:
-        r.fail(f"Only one model so far ({models[0]})", "Run again with --model B to try the second model from .env")
+        r.fail(f"Only one model so far ({models[0]})", "Ask Claude to run the L02 script with model B, the second model in .env")
     else:
         r.fail("Runs are missing the reply or token usage", "Finish TODO 2 and TODO 3 in hello_llm.py")
     return r.finish("l02")

@@ -1,23 +1,20 @@
 # FDE Bootcamp Starter Kit
 
-Pre-work for the **Forward Deployed Engineering Bootcamp** (Traversaal.ai). This repo is your tutor: open it in Claude Code and type `/start`.
+Pre-work for the **Forward Deployed Engineering Bootcamp** (Traversaal.ai). This repo is your tutor: open it in VS Code, type `/start` in the Claude panel, and ask for what you need. You won't need a terminal.
 
 The learning path, reading, demos and unlock checks live on the pre-work site. This repo holds the labs and the scripts that prove they work.
 
 ## Get started
 
 1. On GitHub, click **Use this template → Create a new repository** to get your own copy.
-2. Clone *your* copy and open it:
-   ```bash
-   git clone https://github.com/<your-handle>/fde-starter-kit.git
-   cd fde-starter-kit
-   code .
-   ```
-3. Copy `.env.example` to `.env` and add your OpenRouter key.
-4. Open Claude Code (VS Code panel, or `claude` in the terminal) and type:
+2. In VS Code, click **Clone Git Repository** (Welcome screen or Source Control view), paste *your* copy's URL, and open it.
+3. Open the Claude panel and type:
    ```
    /start
    ```
+4. `/start` creates `.env` for you. Open it, paste your OpenRouter key after `OPENROUTER_API_KEY=`, and save.
+
+From then on, ask Claude for what you need: "run the L02 script with model B", "commit and push ME.md", "what does this error mean?".
 
 ## Commands
 

@@ -3,9 +3,10 @@
 Calls a model through OpenRouter with nothing but the Python standard library,
 then prints the reply and how many tokens you paid for.
 
-    python labs/l02-hello-llm/hello_llm.py                       # MODEL_A from .env
-    python labs/l02-hello-llm/hello_llm.py --model B             # MODEL_B from .env
-    python labs/l02-hello-llm/hello_llm.py -q "Your own question"
+To run it, ask Claude in the VS Code panel:
+    "Run the L02 script with model A"   (MODEL_A from .env)
+    "Run the L02 script with model B"   (MODEL_B from .env)
+    "Run the L02 script with the question: <your own question>"
 
 Three TODOs below. They are the lesson: write them yourself (the tutor will hint).
 """

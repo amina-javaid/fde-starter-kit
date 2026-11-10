@@ -46,9 +46,9 @@ def main() -> int:
         if name_ok and mail_ok and name and mail:
             r.ok(f"Git identity: {name} <{mail}>")
         else:
-            r.fail("Git doesn't know who you are", 'git config --global user.name "Your Name" && git config --global user.email you@example.com')
+            r.fail("Git doesn't know who you are", "Tell Claude the name and email you use on GitHub and ask it to set them")
     else:
-        r.fail("Git not found", "Install from git-scm.com (Windows: Git for Windows), then restart VS Code")
+        r.fail("Git not found", "Windows: install Git for Windows from git-scm.com. Mac: accept the prompt to install developer tools. Then reopen VS Code")
 
     # Python
     if sys.version_info >= (3, 10):
@@ -56,43 +56,34 @@ def main() -> int:
     else:
         r.fail(f"Python {sys.version.split()[0]} is too old", "Install Python 3.10+ from python.org")
 
-    # Node + npm
+    # Node and Docker are only needed from L06, so they never block L01.
     ok, out = run(["node", "--version"])
     if ok and version_tuple(out) >= (20, 0):
         r.ok(f"Node {out}")
     elif ok:
-        r.fail(f"Node {out} is too old", "Install the LTS version from nodejs.org")
+        r.warn(f"Node {out} is older than 20", "Only needed from L06. Update from nodejs.org (LTS) when you get there")
     else:
-        r.fail("Node not found", "Install the LTS version from nodejs.org, then restart VS Code")
-    # npm is a .cmd shim on Windows, which subprocess can't run without the extension.
-    ok, out = run(["npm.cmd" if os.name == "nt" else "npm", "--version"])
-    if ok:
-        r.ok(f"npm {out}")
-    else:
-        r.fail("npm not found", "It comes with Node. Reinstall Node from nodejs.org")
-
-    # Docker (needed from L06, so a warning for now)
+        r.warn("Node not found", "Only needed from L06. No need to install it yet")
     ok, out = run(["docker", "--version"])
     if ok:
         r.ok(out)
     else:
-        r.warn("Docker not found", "You need Docker Desktop from L06. Install it now from docker.com so it's ready")
+        r.warn("Docker not found", "Only needed from L06. No need to install it yet")
 
-    # Claude Code
+    # Claude Code: the VS Code extension is enough.
     ok, out = run(["claude", "--version"])
-    if ok:
-        r.ok(f"Claude Code CLI {out}")
-    elif os.environ.get("CLAUDECODE"):
+    if os.environ.get("CLAUDECODE"):
         r.ok("Running inside Claude Code")
-        r.warn("The claude command isn't on your PATH", "Fine for pre-work. Install the CLI too (see the Claude Code docs) so you can use it from any terminal")
+    elif ok:
+        r.ok(f"Claude Code {out}")
     else:
-        r.fail("Claude Code not found", "Install Claude Code (VS Code extension + CLI). See Book Ch 1 §1.2")
+        r.fail("Claude Code not found", "Install the Claude Code extension in VS Code, then type /preflight in its panel (Book §1.2)")
 
     # API key
     env = load_env()
     key = env.get("OPENROUTER_API_KEY", "")
     if not (ROOT / ".env").exists():
-        r.fail(".env file missing", "Copy .env.example to .env and paste your OpenRouter key")
+        r.fail(".env file missing", "Type /start in the Claude panel: Claude creates .env for you. Then paste your key into it")
     elif not key or key.startswith("sk-or-...") or key == "your-key-here":
         r.fail("OPENROUTER_API_KEY is empty in .env", "Create a key at openrouter.ai/keys and paste it after OPENROUTER_API_KEY=")
     elif not key.startswith("sk-or-"):
@@ -109,7 +100,7 @@ def main() -> int:
     ok, url = run(["git", "remote", "get-url", "origin"])
     h = handle()
     if not ok:
-        r.fail("No GitHub remote", "Create your copy with 'Use this template' on GitHub and clone that, not the original")
+        r.fail("No GitHub remote", "Make your copy with 'Use this template' on GitHub, then open it with VS Code's Clone Git Repository button")
     else:
         r.ok(f"Remote: {url}")
         if h and f"/{h}/" not in url.lower() and f":{h}/" not in url.lower():
@@ -118,7 +109,7 @@ def main() -> int:
     if h:
         r.ok(f"GitHub handle: @{h}")
     else:
-        r.fail("No GitHub handle set", "Run /start, or: python checks/profile.py set <your-github-handle>")
+        r.fail("No GitHub handle set", "Type /start in the Claude panel to set it")
 
     return r.finish("l01")
 

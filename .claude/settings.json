@@ -10,7 +10,18 @@
       "Bash(python checks/l03.py)",
       "Bash(python3 checks/l03.py)",
       "Bash(python checks/l04.py)",
-      "Bash(python3 checks/l04.py)"
+      "Bash(python3 checks/l04.py)",
+      "Bash(python labs/l02-hello-llm/hello_llm.py:*)",
+      "Bash(python3 labs/l02-hello-llm/hello_llm.py:*)",
+      "Bash(python labs/l03-agent-by-hand/agent.py:*)",
+      "Bash(python3 labs/l03-agent-by-hand/agent.py:*)",
+      "Bash(git status:*)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(cp .env.example .env)",
+      "Bash(copy .env.example .env)"
     ],
     "deny": [
       "Read(./.env)",

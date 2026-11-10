@@ -30,9 +30,9 @@ Every term on the pre-work path. `/explain` uses this file. Generated from the s
 | Term | Meaning | Level | Book |
 |---|---|---|---|
 | **Harness** | The runtime scaffolding around a model that manages the loop, tools, permissions and context. The model is the brain; the harness is the body. | L04 Harness & Claude Code | §3.3–3.4 |
-| **Permissions** | Gates between the model and risky actions (shell commands, deletes, pushes). The harness asks; you decide. | L04 Harness & Claude Code | §3.3–3.4 |
+| **Permissions** | Gates between the model and risky actions (running commands, deleting files, pushing). The harness asks; you decide. | L04 Harness & Claude Code | §3.3–3.4 |
 | **Memory** | What survives between sessions. The model has none; the harness provides it via CLAUDE.md, skills and commands. | L04 Harness & Claude Code | §3.3–3.4 |
-| **Claude Code** | Anthropic's agentic coding harness: the agent loop with file, shell and search tools, permissions and memory, in your editor or terminal. | L04 Harness & Claude Code | §3.3–3.4 |
+| **Claude Code** | Anthropic's agentic coding harness: the agent loop with tools for files, commands and search, plus permissions and memory, in a chat panel in your editor. | L04 Harness & Claude Code | §3.3–3.4 |
 | **Plan mode** | Claude Code proposes a plan without changing anything until you approve it. Use it for anything bigger than one file. | L04 Harness & Claude Code | §3.3–3.4 |
 
 ## Extending it

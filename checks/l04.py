@@ -41,11 +41,11 @@ def main() -> int:
     if commits >= 3:
         r.ok(f"{commits} commits on this lab")
     else:
-        r.fail(f"{commits} commit(s) on this lab, need 3", "Commit after each working step: git add labs/l04-first-app && git commit -m '...'")
+        r.fail(f"{commits} commit(s) on this lab, need 3", "Ask Claude to commit after each working step, with a message that says what changed")
 
     ok, out = run(["git", "status", "--porcelain", "--", "labs/l04-first-app"])
     if ok and out:
-        r.warn("You have uncommitted changes in the lab", "Commit them so your history matches what you built")
+        r.warn("You have uncommitted changes in the lab", "Ask Claude to commit them so your history matches what you built")
 
     return r.finish("l04")
 

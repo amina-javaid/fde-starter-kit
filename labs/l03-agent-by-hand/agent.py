@@ -3,7 +3,8 @@
 A support agent for Parcelly, a fictional delivery company. It answers order
 questions by calling a lookup_order tool in a loop. No frameworks.
 
-    python labs/l03-agent-by-hand/agent.py "Where is order 4721 and can I still change the address?"
+To run it, ask Claude in the VS Code panel:
+    "Run my L03 agent with the question 'Where is order 4721 and can I still change the address?'"
 
 Provided: the model call, the tool function, tracing.
 Your job: the three TODOs that turn a chatbot into an agent.

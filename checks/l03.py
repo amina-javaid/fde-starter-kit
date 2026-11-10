@@ -28,7 +28,7 @@ def main() -> int:
     r = Report("L03 · LLM → Agent")
     events = load_trace()
     if not events:
-        r.fail("No trace found", 'Run: python labs/l03-agent-by-hand/agent.py "Where is order 4721?"')
+        r.fail("No trace found", 'Ask Claude to run your agent with a question, e.g. "Where is order 4721?"')
         return r.finish("l03")
 
     responses = [e for e in events if e.get("type") == "model_response"]

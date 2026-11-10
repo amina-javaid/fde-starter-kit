@@ -5,13 +5,13 @@ The full walkthrough is in the **Lab** tab of L04 on the pre-work site.
 
 1. Fill in `SPEC.md`.
 2. In Claude Code, switch to **plan mode** (Shift+Tab) and ask it to plan the simplest version in `app/`.
-3. Approve the plan, build, and **commit after each working step** (at least 3 commits).
+3. Approve the plan, build, and **ask Claude to commit after each working step** (at least 3 commits).
 4. Ask Claude Code to walk you through the code, then fill in the two sections below **in your own words**.
-5. Run `/check l04`.
+5. Type `/check l04`.
 
 ## How to run
 
-TODO: the exact commands someone else would type to run your app.
+TODO: what someone else needs to run your app (accounts, keys, installs) and what to ask Claude Code to start it.
 
 ## How it works
 

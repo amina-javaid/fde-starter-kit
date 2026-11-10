@@ -1,6 +1,6 @@
 # About me
 
-Replace the prompts below, then commit and push. That's your first push for L01.
+Replace the prompts below, save, then ask Claude to commit and push it. That's your first push for L01.
 
 **Who I am and what I do:**
 _(two sentences)_

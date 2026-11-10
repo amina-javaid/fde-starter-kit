@@ -83,11 +83,11 @@ class Report:
     def finish(self, level: str) -> int:
         print()
         if self.failed:
-            print(f"Not yet: {self.failed} item(s) to fix above. Fix them and run the check again.")
+            print(f"Not yet: {self.failed} item(s) to fix above. Fix them (ask Claude for help) and run the check again.")
             return 1
         h = handle()
         if not h:
-            print("All checks passed, but no GitHub handle is set. Run /start (or: python checks/profile.py set <handle>).")
+            print("All checks passed, but no GitHub handle is set. Type /start in the Claude panel to set it.")
             return 1
         code = code_for(level, h)
         progress = read_json(PROGRESS, {})
